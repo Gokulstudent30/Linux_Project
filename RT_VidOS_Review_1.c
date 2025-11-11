@@ -14,7 +14,7 @@ typedef struct {
     struct timespec ts;
 } Frame;
 
-// ---------- Node 1: Frame Generator ----------
+//Node 1: Frame Generator
 Frame *generate_frame(int id) {
     Frame *f = malloc(sizeof(Frame));
     f->frame_id = id;
@@ -29,7 +29,7 @@ Frame *generate_frame(int id) {
     return f;
 }
 
-// ---------- Node 2: Frame Processing ----------
+// Node 2: Frame Processing
 void invert_frame(Frame *f) {
     for (int i = 0; i < f->width * f->height; i++)
         f->data[i] = 255 - f->data[i];
@@ -49,7 +49,7 @@ void threshold(Frame *f, unsigned char th) {
         f->data[i] = (f->data[i] > th) ? 255 : 0;
 }
 
-// ---------- Node 3: Display / Logger ----------
+// Node 3: Display / Logger
 void display_frame_info(Frame *f, const char *stage, const char *effect, double proc_time) {
     printf("[%s] Frame %02d | Time: %ld.%09ld | Pixel[0]=%3d",
            stage, f->frame_id, f->ts.tv_sec, f->ts.tv_nsec, f->data[0]);
@@ -58,7 +58,7 @@ void display_frame_info(Frame *f, const char *stage, const char *effect, double 
     printf("\n");
 }
 
-// ---------- Main Simulation ----------
+// Main Simulation
 int main() {
     srand(time(NULL));
     int frame_count = 10;
@@ -109,5 +109,5 @@ int main() {
     }
 
     printf("\nSimulation complete. Ready for Review 1!\n");
-    return 0;}
-
+    return 0;
+}
